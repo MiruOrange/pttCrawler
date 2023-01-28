@@ -87,14 +87,14 @@ class PttCrawler():
         #第二步，進行比對
         for article in self.articles:                   #self.articles陣列內以字典存放每一筆文章
             if article['title'] not in articleTitleList:#如果新的文章標題不在資料庫文章標題list中
-                addSql = "INSERT INTO {} (author, title, url, push,year, month, day) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}')"
+                addSql = "INSERT INTO {} (author, title, url, push, year, month, day) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}')"
                 sql = addSql.format(self.name, article['author'], article['title'], article['url'], article['push'],article['year'] , article['month'], article['day'])
                 db.execute(sql)
                 db.commit()
             #如果在文章標題列表中，但作者不同，一樣存起來
             else:
-                if article['author'] != authorList:  #判斷作者是否存在作者列表中
-                    addSql = "INSERT INTO {} (author, title, push, year, month, day) VALUES ('{}', '{}', '{}', '{}', '{}', '{}')"
-                    sql = addSql.format(self.name, article['author'], article['title'], article['push'],article['year'] , article['month'], article['day'])
+                if article['author'] not in authorList:  #判斷作者是否存在作者列表中
+                    addSql = "INSERT INTO {} (author, title, url, push, year, month, day) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}')"
+                    sql = addSql.format(self.name, article['author'], article['title'], article['url'], article['push'],article['year'] , article['month'], article['day'])
                     db.execute(sql)                         #執行sql語法
                     db.commit()                             #表單內容有修正，都必須commit()一次
