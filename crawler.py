@@ -94,8 +94,7 @@ class PttCrawler():
                 db.commit()
             #如果在文章標題列表中，但作者不同，一樣存起來
             else:
-                index = self.articles.index(article)        #該文章放在串列中的索引值
-                if article['author'] != authorList[index]:  #用該索引值來判斷同樣位置的作者是否相同
+                if article['author'] != authorList:  #判斷作者是否存在作者列表中
                     addSql = "INSERT INTO {} (author, title, push, year, month, day) VALUES ('{}', '{}', '{}', '{}', '{}', '{}')"
                     sql = addSql.format(self.name, article['author'], article['title'], article['push'],article['year'] , article['month'], article['day'])
                     db.execute(sql)                         #執行sql語法
