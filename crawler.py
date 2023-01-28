@@ -44,7 +44,6 @@ class PttCrawler():
     #<div class="btn-group btn-group-paging">
     #尋找'上頁'的網址
     def getUrl(self, soup):
-        global url
         self.url = 'https://www.ptt.cc'+soup.find('div', 'btn-group btn-group-paging').select('a')[1]['href']
     
     #依照指定的頁數(pages)爬取網頁
