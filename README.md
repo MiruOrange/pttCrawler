@@ -83,10 +83,10 @@
     * saveData(self, db)方法:
       * 傳入database，將爬到的文章與資料庫中資料做比對，重複的就不存入。
       * 篩選的機制有二：
-        1. 文章title不存在資料庫中，則存入。
-        2. 如果title已存在資料庫中，再比對author是否相同。不相同，則存入。
+        1. 在這裡比對url，因為url有唯一性，url不存在資料庫的文章放入資料庫。
+        2. 如果url已存在，則更新其push數，可以更新推文數，未來還可以進行擴展，比如只寄送推文數超過20則的文章給自己。
         
-        ![image](https://user-images.githubusercontent.com/109893487/215242107-a9dd64e0-5c8d-4da0-be45-b65edae8ee6a.png)
+        ![image](https://user-images.githubusercontent.com/109893487/215375702-368f9713-a8c6-43a7-8609-d37d5acc7373.png)
 
 
 
